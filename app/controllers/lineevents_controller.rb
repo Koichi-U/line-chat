@@ -52,7 +52,7 @@ class LineeventsController < ApplicationController
           #userIdの取得
           userId = event['source']['userId']
           #Lineusersにレコードがない場合
-          if Lineusers.find_by(userid: userId).nil?
+          if Lineuser.find_by(userid: userId).nil?
             p 'if-elsiffollowunfollow-ifnil'
             response = client.get_profile(userId)
             case response
@@ -79,7 +79,7 @@ class LineeventsController < ApplicationController
               end
               
               #lineusers、followsへの保存
-              lineusers = Lineusers.new(
+              lineusers = Lineuser.new(
                 displayName: displayName, 
                 userid: userId, 
                 language: language, 
@@ -104,7 +104,7 @@ class LineeventsController < ApplicationController
           else
             p 'if-else'
             #Lineusersのデータ取得
-            lineuser = Lineusers.find_by(userid: userId)
+            lineuser = Lineuser.find_by(userid: userId)
             
             #フォロー、ブロックの条件分岐
             if event['type'] == "follow"
