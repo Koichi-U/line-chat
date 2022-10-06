@@ -79,3 +79,7 @@ gem 'devise'
 
 gem 'line-bot-api'
 
+#To prepend a crash at heroku
+gem 'net-imap'
+gem 'net-pop'
+gem 'net-smtp'
