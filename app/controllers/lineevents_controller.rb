@@ -38,21 +38,27 @@ class LineeventsController < ApplicationController
       userId = event['source']['userId']  #userId取得
       p 'UserID: ' + userId # UserIdを確認
       
-      if event.is_a?(Line::Bot::Event::Message)
-        p 'UserIDNNN: ' + event.type # UserIdを確認
-        case event.type
-        when "text" then
-          message = {
-            type: 'text',
-            text: event.message['text']
-          }
-          client.reply_message(event['replyToken'], message)
-        else
-          p 'UserIDXXXXX: ' + userId # UserIdを確認
-        end
-      else
-        p 'UserIDAAA: ' + userId # UserIdを確認
-      end
+      http_request_body = request.raw_post # Request body string
+      hash = OpenSSL::HMAC::digest(OpenSSL::Digest::SHA256.new, ENV["LINE_CHANNEL_SECRET"], http_request_body)
+      signature = Base64.strict_encode64(hash)
+      P signature
+      # Compare x-line-signature request header string and the signature
+      
+      # if event.is_a?(Line::Bot::Event::Message)
+      #   p 'UserIDNNN: ' + event.type # UserIdを確認
+      #   case event.type
+      #   when "text" then
+      #     message = {
+      #       type: 'text',
+      #       text: event.message['text']
+      #     }
+      #     client.reply_message(event['replyToken'], message)
+      #   else
+      #     p 'UserIDXXXXX: ' + userId # UserIdを確認
+      #   end
+      # else
+      #   p 'UserIDAAA: ' + userId # UserIdを確認
+      # end
     end
     render json: {status: 'SUCCESS'}, status: :ok
   end
