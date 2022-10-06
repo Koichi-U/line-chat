@@ -28,10 +28,11 @@ class LineeventsController < ApplicationController
             text: event.message['text']
           }
           client.reply_message(event['replyToken'], message)
+          logger.debug("good")
         end
       end
     end
-    "OK"
+    render json: {status: 'SUCCESS'}, status: :ok
   end
 
 end
