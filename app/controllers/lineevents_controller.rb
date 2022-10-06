@@ -22,17 +22,18 @@ class LineeventsController < ApplicationController
     end
     events = client.parse_events_from(body)
     events.each do |event|
-      logger.debug(event)
-      if event.is_a?(Line::Bot::Event::Message)
-        if event.type === Line::Bot::Event::MessageType::Text
-          message = {
-            type: 'text',
-            text: event.message['text']
-          }
-          client.reply_message(event['replyToken'], message)
-          logger.debug("good")
-        end
-      end
+      # if event.is_a?(Line::Bot::Event::Message)
+      #   if event.type === Line::Bot::Event::MessageType::Text
+      #     message = {
+      #       type: 'text',
+      #       text: event.message['text']
+      #     }
+      #     client.reply_message(event['replyToken'], message)
+      #     logger.debug("good")
+      #   end
+      # end
+      userId = event['source']['userId']  #userId取得
+      p 'UserID: ' + userId # UserIdを確認
     end
     render json: {status: 'SUCCESS'}, status: :ok
   end
