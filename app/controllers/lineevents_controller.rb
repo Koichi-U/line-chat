@@ -45,9 +45,9 @@ class LineeventsController < ApplicationController
           p 'else-else-else'
         end
         p 'else-else'
-      elsif event.is_a?(Line::Bot::Event::Follow)
+      elsif event.is_a?(Line::Bot::Event::Follow) or event.is_a?(Line::Bot::Event::Unfollow)
         #フォローまたはブロックの場合
-        if event.type == "follow" or event.type == "unfollow"
+        if event['type'] == "follow" or event['type'] == "unfollow"
           p 'if-elsiffollowunfollow'
           #userIdの取得
           userId = event['source']['userId']
@@ -64,11 +64,11 @@ class LineeventsController < ApplicationController
               statusMessage = contact['statusMessage']
               
               #フォロー、ブロックのデータ分岐
-              if event.type == "follow"
+              if event['type'] == "follow"
                 p 'if-elsiffollowunfollow-ifnil-follow'
                 active_follows = 1
                 active = true
-              elsif event.type == "unfollow"
+              elsif event['type'] == "unfollow"
                 p 'if-elsiffollowunfollow-ifnil-unfollow'
                 active_follows = 0
                 active = false
@@ -107,11 +107,11 @@ class LineeventsController < ApplicationController
             lineuser = Lineusers.find_by(userid: userId)
             
             #フォロー、ブロックの条件分岐
-            if event.type == "follow"
+            if event['type'] == "follow"
               p 'if-else-follow'
               lineuser.update(active: true)
               follows.update(active: 1)
-            elsif event.type == "unfollow"
+            elsif event['type'] == "unfollow"
               p 'if-else-unfollow'
               lineuser.update(active: false)
               follows.update(active: 0)
