@@ -28,8 +28,8 @@ class LineeventsController < ApplicationController
             type: 'text',
             text: event.message['text']
           }
+          p 'UserID: ' + message
           client.reply_message(event['replyToken'], message)
-          logger.debug("good")
         end
       end
       userId = event['source']['userId']  #userId取得
