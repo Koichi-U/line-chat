@@ -43,6 +43,8 @@ class LineeventsController < ApplicationController
             text: event.message['text']
           }
           client.reply_message(event['replyToken'], message)
+        else
+          p 'UserIDXXXXX: ' + userId # UserIdを確認
         end
       else
         p 'UserIDAAA: ' + userId # UserIdを確認
