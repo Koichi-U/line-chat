@@ -2,6 +2,9 @@ class LineeventsController < ApplicationController
   
   require 'line/bot'
   
+  # callbackアクションのCSRFトークン認証を無効
+  protect_from_forgery :except => [:callback]
+  
   def client
   @client ||= Line::Bot::Client.new { |config|
     config.channel_id = ENV["LINE_CHANNEL_ID"]
