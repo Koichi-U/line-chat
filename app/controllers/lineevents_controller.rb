@@ -43,7 +43,7 @@ class LineeventsController < ApplicationController
       p 'UserID: ' + userId # UserIdを確認
     end
     
-    p 'code:' + status + 'message' + message
+    p 'code:' + status_code + 'message' + status_message
     render status: status, json: { status: status_code, message: status_message }
   end
 
