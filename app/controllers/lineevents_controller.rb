@@ -15,7 +15,7 @@ class LineeventsController < ApplicationController
   
   def callback
     p 'client: '
-    p　client
+    p　ENV["LINE_CHANNEL_ID"]
     body = request.body.read
     signature = request.env['HTTP_X_LINE_SIGNATURE']
     unless client.validate_signature(body, signature)
