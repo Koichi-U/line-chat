@@ -86,7 +86,7 @@ class LineeventsController < ApplicationController
               end
             else
               statusCode = response.code
-              statusMessage = response.body
+              statusMessage = response.message
             end
           else
             #Lineusersのデータ取得
@@ -105,8 +105,9 @@ class LineeventsController < ApplicationController
         end
       end
     end
-    
-    p 'Code:' + statusCode + '  message:' + statusMessage
+    p statusCode.class
+    p statusMessage.class
+    # p 'Code:' + statusCode + '  message:' + statusMessage
     render status: status, json: { status: statusCode, message: statusMessage }
   end
 
