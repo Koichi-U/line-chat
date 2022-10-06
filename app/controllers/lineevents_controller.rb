@@ -34,6 +34,17 @@ class LineeventsController < ApplicationController
       # end
       userId = event['source']['userId']  #userId取得
       p 'UserID: ' + userId # UserIdを確認
+      
+      if event.key?("type")
+        case event["type"]
+        when "text" then
+          message = {
+            type: 'text',
+            text: event.message['text']
+          }
+          client.reply_message(event['replyToken'], message)
+        end
+      end
     end
     render json: {status: 'SUCCESS'}, status: :ok
   end
