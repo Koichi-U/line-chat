@@ -78,7 +78,7 @@ class LineeventsController < ApplicationController
                 active = false
               else
                 p 'if-elsiffollowunfollow-ifnil-else'
-                active_follows =2
+                active_follows = 2
                 active = false
               end
               
@@ -129,8 +129,8 @@ class LineeventsController < ApplicationController
       p 'else'
     end
     
-    p 'Code:' + statusCode.to_s + '  message:' + statusMessage
-    render status: status, json: { status: statusCode, message: statusMessage }
+    p 'Code:' + statusCode.to_s ||= '' + '  message:' + statusMessage
+    render status: statusCode, json: { status: statusCode, message: statusMessage }
   end
 
 end
