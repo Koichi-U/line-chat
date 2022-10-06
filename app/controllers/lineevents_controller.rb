@@ -32,7 +32,7 @@ class LineeventsController < ApplicationController
           p "response"
           p response
           p event['replyToken']
-          p message.type
+          # p message.type
         end
       end
       userId = event['source']['userId']  #userId取得
