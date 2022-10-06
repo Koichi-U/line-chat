@@ -154,7 +154,7 @@ class LineeventsController < ApplicationController
   end
   
   private
-  def tweet_params
+  def chat_params
     params.require(:chat).permit(:message)
   end
 
