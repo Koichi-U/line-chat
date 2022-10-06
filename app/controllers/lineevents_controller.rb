@@ -133,5 +133,9 @@ class LineeventsController < ApplicationController
     p 'Code:' + statusCode + '  message:' + statusMessage
     render status: statusCode, json: { status: statusCode, message: statusMessage }
   end
+  
+  def list
+    @lineusers = Lineuser.all
+  end
 
 end

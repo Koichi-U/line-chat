@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   root "users#admin"
   get '/admin' => 'users#admin'
   post '/callback' => 'lineevents#callback'
+  get '/line/users' => 'lineevents#list'
 end
