@@ -26,9 +26,9 @@ class LineeventsController < ApplicationController
         if event.type == "text"
           message = {
             type: 'text',
-            text: event.message['text']
+            text: event.message.text
           }
-          p 'UserID: ' + message
+          p 'UserID: ' + message.text
           client.reply_message(event['replyToken'], message)
         end
       end
