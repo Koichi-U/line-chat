@@ -22,11 +22,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_162640) do
   end
 
   create_table "follows", force: :cascade do |t|
-    t.integer "lineusers_id"
+    t.integer "lineuser_id"
     t.integer "active", default: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["lineusers_id"], name: "index_follows_on_lineusers_id"
+    t.index ["lineuser_id"], name: "index_follows_on_lineuser_id"
   end
 
   create_table "lineusers", force: :cascade do |t|

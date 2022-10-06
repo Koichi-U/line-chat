@@ -54,7 +54,7 @@ class LineeventsController < ApplicationController
           #Lineusersにレコードがない場合
           if Lineuser.find_by(userid: userId).nil?
             p 'if-elsiffollowunfollow-ifnil'
-            response = client.get_profile(userId)
+            response = client.get_profile(userId.to_s)
             p response
             #now
             case response
