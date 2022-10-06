@@ -114,8 +114,11 @@ class LineeventsController < ApplicationController
               follows.update(active: 0)
             end
           end
+          p 'else-else-else'
         end
+        p 'else-else'
       end
+      p 'else'
     end
     
     p 'Code:' + statusCode.to_s + '  message:' + statusMessage
