@@ -28,24 +28,29 @@ class LineeventsController < ApplicationController
     events.each do |event|
       p event
       if event.is_a?(Line::Bot::Event)
+        p 'if'
         #イベントタイプで判別
         if event.type == "text"
+          p 'if-iftext'
           message = {
             type: 'text',
             text: event.message['text']
           }
           response = client.reply_message(event['replyToken'], message)
           if response.code != 200
+            p 'if-iftext-status'
             statusCode = response.code
             statusMessage = response.message
           end
         
         #フォローまたはブロックの場合
         elsif event.type == "follow" or event.type == "unfollow"
+          p 'if-elsiffollowunfollow'
           #userIdの取得
           userId = event['source']['userId']
           #Lineusersにレコードがない場合
           if Lineusers.find_by(userid: userId).nil?
+            p 'if-elsiffollowunfollow-ifnil'
             response = client.get_profile(userId)
             case response
             when Net::HTTPSuccess then
@@ -57,12 +62,15 @@ class LineeventsController < ApplicationController
               
               #フォロー、ブロックのデータ分岐
               if event.type == "follow"
+                p 'if-elsiffollowunfollow-ifnil-follow'
                 active_follows = 1
                 active = true
               elsif event.type == "unfollow"
+                p 'if-elsiffollowunfollow-ifnil-unfollow'
                 active_follows = 0
                 active = false
               else
+                p 'if-elsiffollowunfollow-ifnil-else'
                 active_follows =2
                 active = false
               end
@@ -86,22 +94,25 @@ class LineeventsController < ApplicationController
                 p "Cannot register a line user"
               end
             else
+              p 'if-elsiffollowunfollow-else'
               statusCode = response.code
               statusMessage = response.message
             end
           else
+            p 'if-else'
             #Lineusersのデータ取得
             lineuser = Lineusers.find_by(userid: userId)
             
             #フォロー、ブロックの条件分岐
             if event.type == "follow"
+              p 'if-else-follow'
               lineuser.update(active: true)
               follows.update(active: 1)
             elsif event.type == "unfollow"
+              p 'if-else-unfollow'
               lineuser.update(active: false)
               follows.update(active: 0)
             end
-            
           end
         end
       end
