@@ -3,7 +3,7 @@ class LineeventsController < ApplicationController
   require 'line/bot'
   
   # callbackアクションのCSRFトークン認証を無効
-  protect_from_forgery :except => [:callback]
+  # protect_from_forgery :except => [:callback]
   
   def client
   @client ||= Line::Bot::Client.new { |config|
