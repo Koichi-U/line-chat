@@ -105,9 +105,8 @@ class LineeventsController < ApplicationController
         end
       end
     end
-    p statusCode.class
-    p statusMessage.class
-    # p 'Code:' + statusCode + '  message:' + statusMessage
+    
+    p 'Code:' + statusCode.to_s + '  message:' + statusMessage
     render status: status, json: { status: statusCode, message: statusMessage }
   end
 
