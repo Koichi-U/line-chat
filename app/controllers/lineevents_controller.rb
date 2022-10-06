@@ -40,7 +40,8 @@ class LineeventsController < ApplicationController
       userId = event['source']['userId']  #userId取得
       p 'UserID: ' + userId # UserIdを確認
     end
-    render status: status
+    
+    render status: status, json: { status: status }
   end
 
 end
