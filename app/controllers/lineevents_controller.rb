@@ -36,6 +36,7 @@ class LineeventsController < ApplicationController
       p 'UserID: ' + userId # UserIdを確認
       
       if event.is_a?(Line::Bot::Event::Message)
+        p 'UserIDNNN: ' + userId # UserIdを確認
         case event.type
         when "text" then
           message = {
