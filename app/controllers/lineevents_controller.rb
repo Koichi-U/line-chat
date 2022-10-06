@@ -41,7 +41,7 @@ class LineeventsController < ApplicationController
       http_request_body = request.raw_post # Request body string
       hash = OpenSSL::HMAC::digest(OpenSSL::Digest::SHA256.new, ENV["LINE_CHANNEL_SECRET"], http_request_body)
       signature = Base64.strict_encode64(hash)
-      P signature
+      p signature
       # Compare x-line-signature request header string and the signature
       
       # if event.is_a?(Line::Bot::Event::Message)
