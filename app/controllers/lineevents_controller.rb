@@ -139,7 +139,7 @@ class LineeventsController < ApplicationController
   end
   
   def chat
-    @chats = Chat.includes(:lineuser).where(lineuser: {userid: params[userid]})
+    @chats = Chat.includes(:lineuser)
     @chat = Chat.new
   end
   
