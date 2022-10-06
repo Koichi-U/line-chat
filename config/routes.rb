@@ -4,5 +4,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "users#admin"
-  get 'admin' => 'users#admin'
+  get '/admin' => 'users#admin'
+  post '/callback' => 'lineevents#callback'
 end
