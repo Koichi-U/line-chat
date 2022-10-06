@@ -35,7 +35,7 @@ class LineeventsController < ApplicationController
       userId = event['source']['userId']  #userId取得
       p 'UserID: ' + userId # UserIdを確認
       
-      if event.has_key?("type")
+      if event.include?(:type)
         case event["type"]
         when "text" then
           message = {
