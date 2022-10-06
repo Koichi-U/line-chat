@@ -2,5 +2,6 @@
   <div class="lineuser">
     <%= l.displayname %>
     <%= l.active %>
+    <%= link_to "Chat", chat_path(l.userid) %>
   </div>
 <% end %>

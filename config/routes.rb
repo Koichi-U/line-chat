@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get '/admin' => 'users#admin'
   post '/callback' => 'lineevents#callback'
   get '/line/users' => 'lineevents#list'
+  get '/line/chat/:userid' => 'lineevents#chat', as: 'chat'
 end
