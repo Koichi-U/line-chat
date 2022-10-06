@@ -13,12 +13,12 @@
 ActiveRecord::Schema[7.0].define(version: 2022_10_06_162640) do
   create_table "chats", force: :cascade do |t|
     t.string "message"
-    t.integer "users_id"
-    t.integer "lineusers_id"
+    t.integer "user_id"
+    t.integer "lineuser_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["lineusers_id"], name: "index_chats_on_lineusers_id"
-    t.index ["users_id"], name: "index_chats_on_users_id"
+    t.index ["lineuser_id"], name: "index_chats_on_lineuser_id"
+    t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
   create_table "follows", force: :cascade do |t|
