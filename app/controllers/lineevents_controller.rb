@@ -80,8 +80,8 @@ class LineeventsController < ApplicationController
                 active = false
               end
               
-              #lineusers、followsへの保存
-              lineusers = Lineuser.new(
+              #lineuser、followへの保存
+              lineuser = Lineuser.new(
                 displayname: displayName, 
                 userid: userId, 
                 language: language, 
@@ -89,7 +89,7 @@ class LineeventsController < ApplicationController
                 statusmessage: statusMessage,
                 active: active
               )
-              lineusers.follows.build(
+              lineuser.follow.build(
                 active: active_follows
               )
               
