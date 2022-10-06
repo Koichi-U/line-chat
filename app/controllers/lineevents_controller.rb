@@ -21,6 +21,7 @@ class LineeventsController < ApplicationController
     end
     events = client.parse_events_from(body)
     events.each do |event|
+      logger.debug(event)
       if event.is_a?(Line::Bot::Event::Message)
         if event.type === Line::Bot::Event::MessageType::Text
           message = {
