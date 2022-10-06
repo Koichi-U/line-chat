@@ -21,7 +21,8 @@ class LineeventsController < ApplicationController
       error 400 do 'Bad Request' end
     end
     
-    status = 200
+    status_code = 200
+    status_message = 'OK'
     
     events = client.parse_events_from(body)
     events.each do |event|
@@ -33,7 +34,8 @@ class LineeventsController < ApplicationController
           }
           response = client.reply_message(event['replyToken'], message)
           if response.code != 200
-            status = response.code
+            status_code = response.code
+            status_message = response.message
           end
         end
       end
@@ -41,7 +43,7 @@ class LineeventsController < ApplicationController
       p 'UserID: ' + userId # UserIdを確認
     end
     
-    render status: status, json: { status: status }
+    render status: status, json: { status: status, message: message }
   end
 
 end
