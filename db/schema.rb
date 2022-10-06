@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_06_012151) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_06_162640) do
   create_table "chats", force: :cascade do |t|
     t.string "message"
     t.integer "users_id"
@@ -21,8 +21,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_012151) do
     t.index ["users_id"], name: "index_chats_on_users_id"
   end
 
+  create_table "follows", force: :cascade do |t|
+    t.integer "lineusers_id"
+    t.integer "active", default: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lineusers_id"], name: "index_follows_on_lineusers_id"
+  end
+
   create_table "lineusers", force: :cascade do |t|
-    t.string "displayName"
+    t.string "displayname"
     t.string "userid"
     t.string "language"
     t.string "pictureurl"

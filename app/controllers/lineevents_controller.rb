@@ -21,12 +21,13 @@ class LineeventsController < ApplicationController
       error 400 do 'Bad Request' end
     end
     
-    status_code = 200
-    status_message = 'OK'
+    statusCode = 200
+    statusMessage = 'OK'
     
     events = client.parse_events_from(body)
     events.each do |event|
       if event.is_a?(Line::Bot::Event::Message)
+        #イベントタイプで判別
         if event.type == "text"
           message = {
             type: 'text',
@@ -34,17 +35,79 @@ class LineeventsController < ApplicationController
           }
           response = client.reply_message(event['replyToken'], message)
           if response.code != 200
-            status_code = response.code
-            status_message = response.message
+            statusCode = response.code
+            statusMessage = response.message
+          end
+        
+        #フォローまたはブロックの場合
+        elsif event.type == "follow" or event.type == "unfollow"
+          #userIdの取得
+          userId = event['source']['userId']
+          #Lineusersにレコードがない場合
+          if Lineusers.find_by(userid: userId).nil?
+            response = client.get_profile(userId)
+            case response
+            when Net::HTTPSuccess then
+              contact = JSON.parse(response.body)
+              displayName = contact['displayName']
+              language = contact['language']
+              pictureUrl = contact['pictureUrl']
+              statusMessage = contact['statusMessage']
+              
+              #フォロー、ブロックのデータ分岐
+              if event.type == "follow"
+                active_follows = 1
+                active = true
+              elsif event.type == "unfollow"
+                active_follows = 0
+                active = false
+              else
+                active_follows =2
+                active = false
+              end
+              
+              #lineusers、followsへの保存
+              lineusers = Lineusers.new(
+                displayName: displayName, 
+                userid: userId, 
+                language: language, 
+                pictureurl: pictureUrl, 
+                statusmessage: statusMessage,
+                active: active
+              )
+              lineusers.follows.build(
+                active: active_follows
+              )
+              
+              if lineusers.save
+                p "Register a line user"
+              else
+                p "Cannot register a line user"
+              end
+            else
+              statusCode = response.code
+              statusMessage = response.body
+            end
+          else
+            #Lineusersのデータ取得
+            lineuser = Lineusers.find_by(userid: userId)
+            
+            #フォロー、ブロックの条件分岐
+            if event.type == "follow"
+              lineuser.update(active: true)
+              follows.update(active: 1)
+            elsif event.type == "unfollow"
+              lineuser.update(active: false)
+              follows.update(active: 0)
+            end
+            
           end
         end
       end
-      userId = event['source']['userId']  #userId取得
-      p 'UserID: ' + userId # UserIdを確認
     end
     
-    p 'Code:' + status_code + '  message:' + status_message
-    render status: status, json: { status: status_code, message: status_message }
+    p 'Code:' + statusCode + '  message:' + statusMessage
+    render status: status, json: { status: statusCode, message: statusMessage }
   end
 
 end
