@@ -83,3 +83,5 @@ gem 'line-bot-api'
 gem 'net-imap'
 gem 'net-pop'
 gem 'net-smtp'
+
+gem 'dotenv-rails' 
