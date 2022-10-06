@@ -28,7 +28,7 @@ class LineeventsController < ApplicationController
             type: 'text',
             text: event.message['text']
           }
-          p 'UserID: ' + message[text]
+          p 'UserID: '
           client.reply_message(event['replyToken'], message)
         end
       end
