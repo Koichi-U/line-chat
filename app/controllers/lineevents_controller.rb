@@ -51,8 +51,10 @@ class LineeventsController < ApplicationController
           p 'if-elsiffollowunfollow'
           #userIdの取得
           userId = event['source']['userId']
+          p userId
+          p userId.class
           #Lineusersにレコードがない場合
-          if Lineuser.find_by(userid: userId).nil?
+          if event['type'] == "follow" and Lineuser.find_by(userid: userId).nil?
             p 'if-elsiffollowunfollow-ifnil'
             response = client.get_profile(userId.to_s)
             p response
@@ -89,7 +91,7 @@ class LineeventsController < ApplicationController
                 statusmessage: statusMessage,
                 active: active
               )
-              lineuser.follow.build(
+              lineuser.follows.build(
                 active: active_follows
               )
               
@@ -103,7 +105,7 @@ class LineeventsController < ApplicationController
               statusCode = response.code
               statusMessage = response.message
             end
-          else
+          elsif !Lineuser.find_by(userid: userId).nil?
             p 'if-else'
             #Lineusersのデータ取得
             lineuser = Lineuser.find_by(userid: userId)
