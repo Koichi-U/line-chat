@@ -140,6 +140,22 @@ class LineeventsController < ApplicationController
   
   def chat
     @chats = Chat.where(lineusers: {userid: params[:userid] })
+    @chat = Chat.new
+  end
+  
+  def create
+    chat = Chat.new(chat_params)
+    chat.lineusers_id = 1
+    if chat.save
+      redirect_to :action => "chat"
+    else
+      redirect_to :action => "list"
+    end
+  end
+  
+  private
+  def tweet_params
+    params.require(:chat).permit(:message)
   end
 
 end
