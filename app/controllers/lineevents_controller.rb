@@ -55,6 +55,8 @@ class LineeventsController < ApplicationController
           if Lineuser.find_by(userid: userId).nil?
             p 'if-elsiffollowunfollow-ifnil'
             response = client.get_profile(userId)
+            p response
+            #now
             case response
             when Net::HTTPSuccess then
               contact = JSON.parse(response.body)
@@ -80,7 +82,7 @@ class LineeventsController < ApplicationController
               
               #lineusers、followsへの保存
               lineusers = Lineuser.new(
-                displayName: displayName, 
+                displayname: displayName, 
                 userid: userId, 
                 language: language, 
                 pictureurl: pictureUrl, 
