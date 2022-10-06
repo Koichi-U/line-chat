@@ -95,7 +95,7 @@ class LineeventsController < ApplicationController
                 active: active_follows
               )
               
-              if lineusers.save
+              if lineuser.save
                 p "Register a line user"
               else
                 p "Cannot register a line user"
