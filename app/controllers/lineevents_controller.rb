@@ -114,11 +114,11 @@ class LineeventsController < ApplicationController
             if event['type'] == "follow"
               p 'if-else-follow'
               lineuser.update(active: true)
-              follows.update(active: 1)
+              follow.update(active: 1)
             elsif event['type'] == "unfollow"
               p 'if-else-unfollow'
               lineuser.update(active: false)
-              follows.update(active: 0)
+              follow.update(active: 0)
             end
             p 'else-else-else-else'
           end
@@ -129,7 +129,8 @@ class LineeventsController < ApplicationController
       p 'else'
     end
     
-    p 'Code:' + statusCode.to_s ||= '' + '  message:' + statusMessage
+    statusCode = statusCode.to_s ||= ''
+    p 'Code:' + statusCode + '  message:' + statusMessage
     render status: statusCode, json: { status: statusCode, message: statusMessage }
   end
 
