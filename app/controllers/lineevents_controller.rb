@@ -44,6 +44,8 @@ class LineeventsController < ApplicationController
           }
           client.reply_message(event['replyToken'], message)
         end
+      else
+        p 'UserIDAAA: ' + userId # UserIdを確認
       end
     end
     render json: {status: 'SUCCESS'}, status: :ok
