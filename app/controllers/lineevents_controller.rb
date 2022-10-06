@@ -27,7 +27,7 @@ class LineeventsController < ApplicationController
     events = client.parse_events_from(body)
     events.each do |event|
       p event
-      if event.is_a?(Line::Bot::Event)
+      if event.is_a?(Line::Bot::Event::Message)
         p 'if'
         #イベントタイプで判別
         if event.type == "text"
@@ -42,9 +42,12 @@ class LineeventsController < ApplicationController
             statusCode = response.code
             statusMessage = response.message
           end
-        
+          p 'else-else-else'
+        end
+        p 'else-else'
+      elsif event.is_a?(Line::Bot::Event::Follow)
         #フォローまたはブロックの場合
-        elsif event.type == "follow" or event.type == "unfollow"
+        if event.type == "follow" or event.type == "unfollow"
           p 'if-elsiffollowunfollow'
           #userIdの取得
           userId = event['source']['userId']
@@ -113,6 +116,7 @@ class LineeventsController < ApplicationController
               lineuser.update(active: false)
               follows.update(active: 0)
             end
+            p 'else-else-else-else'
           end
           p 'else-else-else'
         end
