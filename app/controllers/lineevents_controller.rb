@@ -163,12 +163,12 @@ class LineeventsController < ApplicationController
     statusMessage = 'OK'
     message = {
       type: 'text',
-      text: params[:message]
+      text: params[:chat][:message]
     }
     
     # lineuser = Lineuser.find(params[:lineuser_id])
     p message
-    p params[:lineuser_id]
+    p params[:chat][:lineuser_id]
     
     response = client.push_message(params[:lineuser_id], message)
     p response
