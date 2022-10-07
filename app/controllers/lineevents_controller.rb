@@ -154,7 +154,7 @@ class LineeventsController < ApplicationController
   end
   
   def chat
-    p params[:userid]
+    p Chat.all
     @chats = Chat.includes(:lineuser).where(lineuser: { userid: params[:userid]})
     p @chats
     @chat = Chat.new
