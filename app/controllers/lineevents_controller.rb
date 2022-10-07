@@ -52,7 +52,7 @@ class LineeventsController < ApplicationController
           end
           
           response = client.reply_message(event['replyToken'], message)
-          if response.code != 200
+          if response.code != "200"
             p 'if-iftext-status'
             statusCode = response.code
             statusMessage = response.message
@@ -172,7 +172,7 @@ class LineeventsController < ApplicationController
     
     response = client.push_message(params[:chat][:lineuser_id], message)
     p response.code
-    if response.code != 200
+    if response.code != "200"
       p 'if-iftext-status'
       statusCode = response.code
       statusMessage = response.message
