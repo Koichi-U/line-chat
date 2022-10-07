@@ -170,7 +170,7 @@ class LineeventsController < ApplicationController
     p message
     p params[:chat][:lineuser_id]
     
-    response = client.push_message(params[:lineuser_id], message)
+    response = client.push_message(params[:chat][:lineuser_id], message)
     p response
     if response.code != 200
       p 'if-iftext-status'
