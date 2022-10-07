@@ -7,6 +7,6 @@
 
 <%= form_for(@chat, url: {controller: 'lineevents', action: 'messagecreate' }) do |f| %>
   <%= f.text_field :message %>
-  <%= f.hidden_field :lineuser_id, value: Lineuser.find_by(userid: params[:userid]).id %>
+  <%= f.hidden_field :lineuser_id, value: params[:userid] %>
   <%= f.submit %>
 <% end %>

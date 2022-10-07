@@ -162,6 +162,10 @@ class LineeventsController < ApplicationController
   def messagecreate
     statusCode = 200
     statusMessage = 'OK'
+    message = {
+      type: 'text',
+      text: params[:message]
+    }
     
     # lineuser = Lineuser.find(params[:lineuser_id])
     
