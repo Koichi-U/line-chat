@@ -155,7 +155,7 @@ class LineeventsController < ApplicationController
   
   def chat
     p params[:userid]
-    @chats = Chat.includes(:lineuser).where('lineuser.userid = ?', params[:userid]).references(:lineusers)
+    @chats = Chat.includes(:lineusers).where('lineuser.userid = ?', params[:userid]).references(:lineusers)
     p @chats
     @chat = Chat.new
   end
