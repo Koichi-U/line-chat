@@ -183,6 +183,7 @@ class LineeventsController < ApplicationController
     else
       chat = Chat.new(chat_params)
       chat.lineuser_id = 1
+      p chat
       if chat.save
         redirect_back(fallback_location: root_path)
       else
@@ -199,7 +200,7 @@ class LineeventsController < ApplicationController
   
   private
   def chat_params
-    params.require(:chat).permit(:message)
+    params.require(:chat).permit(:message, :lineuser_id)
   end
 
 end
