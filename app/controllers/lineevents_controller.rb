@@ -37,12 +37,12 @@ class LineeventsController < ApplicationController
             text: event.message['text']
           }
           
-          lineuserId = Lineuser.find_by(userid: event['source']['userId'])
-          p lineuserId
+          lineuser = Lineuser.find_by(userid: event['source']['userId'])
+          p lineuser
           
           chat = Chat.new(
             message: event.message['text'], 
-            lineuser_id: lineuserId
+            lineuser_id: lineuser.id
           )
           
           if chat.save
