@@ -36,6 +36,20 @@ class LineeventsController < ApplicationController
             type: 'text',
             text: event.message['text']
           }
+          
+          lineuserId = Lineuser.where(userid: event['source']['userId'])
+          
+          chat = Chat.new(
+            message: event.message['text'], 
+            lineuser_id: lineuserId
+          )
+          
+          if chat.save
+            p "Save a message"
+          else
+            p "Cannot save a message"
+          end
+          
           response = client.reply_message(event['replyToken'], message)
           if response.code != 200
             p 'if-iftext-status'
