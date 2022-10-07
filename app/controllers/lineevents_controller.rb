@@ -163,9 +163,9 @@ class LineeventsController < ApplicationController
     statusCode = 200
     statusMessage = 'OK'
     
-    lineuser = Lineuser.find(params[:lineuser_id])
+    # lineuser = Lineuser.find(params[:lineuser_id])
     
-    response = client.push_message(lineuser.userid, message)
+    response = client.push_message(params[:lineuser_id], message)
     if response.code != 200
       p 'if-iftext-status'
       statusCode = response.code
