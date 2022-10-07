@@ -5,7 +5,7 @@
   </div>
 <% end %>
 
-<%= form_for(@chat, url: {controller: 'lineevents', action: 'chat' }) do |f| %>
+<%= form_for(@chat, url: {controller: 'lineevents', action: 'messagecreate' }) do |f| %>
   <%= f.text_field :message %>
   <%= f.submit %>
 <% end %>
