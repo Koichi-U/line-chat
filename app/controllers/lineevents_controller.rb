@@ -160,7 +160,7 @@ class LineeventsController < ApplicationController
   
   def messagecreate
     chat = Chat.new(chat_params)
-    chat.lineusers_id = 1
+    chat.lineuser_id = 1
     if chat.save
       redirect_to :action => "chat"
     else
