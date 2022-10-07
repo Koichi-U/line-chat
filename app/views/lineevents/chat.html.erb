@@ -4,11 +4,3 @@
     <%= l.message %>
   </div>
 <% end %>
-
-<%= form_for(@chat, url: {controller: 'lineevents', action: 'create' }) do |f| %>
-  <div class="field">
-    <%= f.message :message %>
-    <%= f.text_field :message, :size => 140 %>
-  </div>
-  <%= f.submit "message" %>
-<% end %>
