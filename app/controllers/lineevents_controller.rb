@@ -155,6 +155,7 @@ class LineeventsController < ApplicationController
   
   def chat
     @chats = Chat.includes(:lineuser)
+    p @chats
     @chat = Chat.new
   end
   
