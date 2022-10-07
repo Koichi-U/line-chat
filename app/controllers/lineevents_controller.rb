@@ -156,16 +156,38 @@ class LineeventsController < ApplicationController
   def chat
     @chats = Chat.includes(:lineuser)
     @chat = Chat.new
+    session[:previous_url] = request.referer
   end
   
   def messagecreate
-    chat = Chat.new(chat_params)
-    chat.lineuser_id = 1
-    if chat.save
-      redirect_to :action => "chat"
-    else
+    statusCode = 200
+    statusMessage = 'OK'
+    
+    lineuser = Lineuser.find(params[:lineuser_id])
+    
+    response = client.push_message(lineuser.userid, message)
+    if response.code != 200
+      p 'if-iftext-status'
+      statusCode = response.code
+      statusMessage = response.message
+      
+      statusCode = statusCode.to_s ||= ''
+      p 'Code:' + statusCode + '  message:' + statusMessage
       redirect_to :action => "list"
+    else
+      chat = Chat.new(chat_params)
+      chat.lineuser_id = 1
+      if chat.save
+        redirect_to session[:previous_url]
+      else
+        redirect_to :action => "list"
+      end
+      
+      statusCode = statusCode.to_s ||= ''
+      p 'Code:' + statusCode + '  message:' + statusMessage
     end
+    
+    
   end
   
   private
