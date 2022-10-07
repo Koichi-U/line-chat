@@ -37,7 +37,8 @@ class LineeventsController < ApplicationController
             text: event.message['text']
           }
           
-          lineuserId = Lineuser.where(userid: event['source']['userId'])
+          lineuserId = Lineuser.find_by(userid: event['source']['userId'])
+          p lineuserId
           
           chat = Chat.new(
             message: event.message['text'], 
