@@ -158,7 +158,7 @@ class LineeventsController < ApplicationController
     @chat = Chat.new
   end
   
-  def create
+  def messagecreate
     chat = Chat.new(chat_params)
     chat.lineusers_id = 1
     if chat.save
