@@ -170,6 +170,7 @@ class LineeventsController < ApplicationController
     # lineuser = Lineuser.find(params[:lineuser_id])
     
     response = client.push_message(params[:lineuser_id], message)
+    p response
     if response.code != 200
       p 'if-iftext-status'
       statusCode = response.code
@@ -184,6 +185,7 @@ class LineeventsController < ApplicationController
       if chat.save
         redirect_to session[:previous_url]
       else
+        p chat.save!
         redirect_to :action => "list"
       end
       
