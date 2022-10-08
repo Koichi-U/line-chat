@@ -195,6 +195,8 @@ class LineeventsController < ApplicationController
       chat.user_id = current_user.id
       p chat
       if chat.save
+        p chat.message
+        p chat.created_at
         lineuser.update(
           lastmessage: chat.message,
           lastmessagetime: chat.created_at,
