@@ -38,7 +38,7 @@ class LineeventsController < ApplicationController
           lineuser = Lineuser.find_by(userid: event['source']['userId'])
           p lineuser
           
-          notifier.post text: event.message['text'], username: lineuser.displayname, icon_url: lineuser.pictureurl
+          notifier.post text: event.message['text'], username: lineuser.displayname, icon_url: lineuser.pictureurl, channel: "#line-chat-bot"
           
           chat = Chat.new(
             message: event.message['text'],
