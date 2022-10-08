@@ -51,7 +51,8 @@ class LineeventsController < ApplicationController
             lineuser.update(
               lastmessage: event.message['text'],
               lastmessagetime: chat.created_at,
-              read: false
+              read: false,
+              readcount: lineuser.readcount+1
             )
           else
             p "Cannot save a message"
@@ -200,7 +201,8 @@ class LineeventsController < ApplicationController
         lineuser.update(
           lastmessage: chat.message,
           lastmessagetime: chat.created_at,
-          read: true
+          read: true,
+          readcount: lineuser.readcount+1
         )
         redirect_back(fallback_location: root_path)
       else
