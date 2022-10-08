@@ -1,11 +1,21 @@
 <div class="list-group">
   <% @lineusers.each do |l| %>
-    <a href="<%= chat_path(l.userid) %>" class="list-group-item list-group-item-action active" aria-current="true">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"><%= l.displayname %></h5>
-        <small>Time</small>
-      </div>
-      <p class="mb-1">Message</p>
-    </a>
+    <%= if l.read %>
+      <a href="<%= chat_path(l.userid) %>" class="list-group-item list-group-item-action active" aria-current="true">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= l.displayname %></h5>
+          <small><%= l.lastmessagetime %></small>
+        </div>
+        <p class="mb-1"><%= l.lastmessage %></p>
+      </a>
+    <% else %>
+      <a href="<%= chat_path(l.userid) %>" class="list-group-item list-group-item-action active">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= l.displayname %></h5>
+          <small><%= l.lastmessagetime %></small>
+        </div>
+        <p class="mb-1"><%= l.lastmessage %></p>
+      </a>
+    <% end %>
   <% end %>
 </div>

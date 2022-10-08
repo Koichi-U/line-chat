@@ -42,12 +42,17 @@ class LineeventsController < ApplicationController
           p lineuser
           
           chat = Chat.new(
-            message: event.message['text'], 
+            message: event.message['text'],
             lineuser_id: lineuser.id
           )
           
           if chat.save
             p "Save a message"
+            lineuser.update(
+              lastmessage: event.message['text'],
+              lastmessagetime: chat.created_at,
+              read: false
+            )
           else
             p "Cannot save a message"
           end
@@ -105,7 +110,9 @@ class LineeventsController < ApplicationController
                 language: language, 
                 pictureurl: pictureUrl, 
                 statusmessage: statusMessage,
-                active: active
+                active: active,
+                lastmessage: "",
+                lastmessagetime: ""
               )
               lineuser.follows.build(
                 active: active_follows
@@ -189,6 +196,11 @@ class LineeventsController < ApplicationController
       chat.user_id = current_user.id
       p chat
       if chat.save
+        lineuser.update(
+          lastmessage: chat.message,
+          lastmessagetime: chat.created_at,
+          read: true
+        )
         redirect_back(fallback_location: root_path)
       else
         p chat.save!

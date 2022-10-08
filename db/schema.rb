@@ -36,6 +36,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_162640) do
     t.string "pictureurl"
     t.string "statusmessage"
     t.boolean "active", default: true, null: false
+    t.string "lastmessage"
+    t.datetime "lastmessagetime"
+    t.boolean "read", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

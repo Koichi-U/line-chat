@@ -7,6 +7,10 @@ class CreateLineusers < ActiveRecord::Migration[7.0]
       t.string :pictureurl
       t.string :statusmessage
       t.boolean :active, default: true, null: false
+      
+      t.string :lastmessage
+      t.datetime :lastmessagetime
+      t.boolean :read, default: false, null: false
 
       t.timestamps
     end
