@@ -6,13 +6,13 @@
         <div class="d-flex flex-row justify-content-start d-flex flex-row justify-content-start align-items-center">
           <img src="<%= l.pictureurl %>" class="rounded-circle w-10" width="50" height="50">
           <div class="ms-3">
-            <h5 class="m-0 text-truncate" style="max-width:200px;"><%= l.displayname %></h5>
+            <h6 class="m-0 text-truncate" style="max-width:200px;"><%= l.displayname %></h6>
             <p class="m-0 text-secondary text-truncate" style="max-width:200px;"><%= l.lastmessage %></p>
           </div>
         </div>
         <div class="">
           <% if date.after? Date.current-1 %>
-            <p class="m-0 text-secondary"><small><%= date.strftime('%H:%M') %></small></p>
+            <p class="m-0 text-secondary"><small><%= date.strftime('%Y/%m/%d') %></small></p>
           <% elsif date.after? Date.yesterday %>
             <p class="m-0 text-secondary"><small>昨日</small></p>
           <% elsif date.after? Date.current-7 %>
