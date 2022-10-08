@@ -5,6 +5,10 @@
       <div class="receive d-flex flex-row align-items-center justify-content-start" style="height: 40px">
         <img src="<%= lineuser.pictureurl %>" class="rounded-circle w-10" width="36" height="36">
         <%= c.message %>
+        <div class="post-time small">
+          <%= c.created_at.strftime('%Y/%m/%d') %>
+          <%= c.created_at.strftime('%H:%M') %>
+        </div>
       </div>
     <% else %>
     <% end %>
