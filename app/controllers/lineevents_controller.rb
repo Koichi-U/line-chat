@@ -177,8 +177,7 @@ class LineeventsController < ApplicationController
     }
     
     lineuser = Lineuser.find_by(userid: params[:chat][:lineuser_id])
-    p message
-    p params[:chat][:lineuser_id]
+    p lineuser
     
     response = client.push_message(params[:chat][:lineuser_id], message)
     p response.code
