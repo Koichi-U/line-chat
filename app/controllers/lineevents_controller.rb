@@ -1,5 +1,6 @@
 class LineeventsController < ApplicationController
   before_action :authenticate_user!, except: [:client, :callback]
+  WEBHOOK_URL = ENV["WEBHOOK_URL"]
   
   require 'line/bot'
   
@@ -33,10 +34,8 @@ class LineeventsController < ApplicationController
         #イベントタイプで判別
         if event.type == "text"
           p 'if-iftext'
-          message = {
-            type: 'text',
-            text: event.message['text']
-          }
+          
+          notifier.ping event.message['text']
           
           lineuser = Lineuser.find_by(userid: event['source']['userId'])
           p lineuser
@@ -213,8 +212,13 @@ class LineeventsController < ApplicationController
   end
   
   private
-  def chat_params
-    params.require(:chat).permit(:message, :lineuser_id)
-  end
+  
+    def chat_params
+      params.require(:chat).permit(:message, :lineuser_id)
+    end
+    
+    def notifier
+      Slack::Notifier.new(WEBHOOK_URL, username: '通知Bot', icon_emoji: ':sunglasses:')
+    end
 
 end

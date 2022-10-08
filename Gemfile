@@ -84,4 +84,6 @@ gem 'net-imap'
 gem 'net-pop'
 gem 'net-smtp'
 
-gem 'dotenv-rails' 
+gem 'dotenv-rails'
+
+gem 'slack-notifier'
