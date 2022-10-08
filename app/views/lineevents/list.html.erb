@@ -2,7 +2,7 @@
   <% @lineusers.each do |l| %>
     <% if l.lastmessagetime.nil? then date = l.created_at.strftime('%Y/%m/%d %H:%M') else date = l.lastmessagetime.strftime('%Y/%m/%d %H:%M') end %>
     <a href="<%= chat_path(l.userid) %>" class="list-group-item list-group-item-action">
-      <div class="d-flex justify-content-between align-content-center" style="height: 90px;">
+      <div class="d-flex justify-content-between align-content-center" style="height: 66px; padding: 12px 20px">
         <div class="d-flex flex-row justify-content-start d-flex flex-row justify-content-start align-items-center">
           <img src="<%= l.pictureurl %>" class="rounded-circle w-10" width="50" height="50">
           <div class="ms-3">
@@ -12,9 +12,9 @@
         </div>
         <div class="">
           <p class="m-0 text-secondary"><small><%= date %></small></p>
-          <div class="d-flex align-items-center justify-content-center" style="height: 66px;">
+          <div class="d-flex align-items-center justify-content-center" style="height: 42px;">
             <% if l.lastmessage.nil? %>
-              <span class="badge bg-success rounded-pill">N</span>
+              <span class="badge bg-danger rounded-pill">N</span>
             <% elsif l.readcount > 0 %>
               <span class="badge bg-primary rounded-pill"><%= l.readcount %></span>
             <% end %>
