@@ -1,5 +1,5 @@
 <% lineuser = Lineuser.find_by(userid: params[:userid]) %>
-<% day = DateTime.new(0, 0, 0, 0, 0) %>
+<% day = DateTime.new(0, 1, 1, 0, 0) %>
 <% @chats.each do |c| %>
   <div class="chat">
     <% if day != c.created_at %>
