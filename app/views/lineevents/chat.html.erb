@@ -2,7 +2,7 @@
 <% day = DateTime.new(0, 1, 1, 0, 0) %>
 <% @chats.each do |c| %>
   <div class="chat">
-    <% if day != c.created_at %>
+    <% if day.strftime('%Y/%m/%d') != c.created_at.strftime('%Y/%m/%d') %>
       <% day = c.created_at %>
       <p><%= c.created_at.strftime('%Y/%m/%d %H:%M') %></p>
     <% end %>
