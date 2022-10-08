@@ -176,7 +176,7 @@ class LineeventsController < ApplicationController
       text: params[:chat][:message]
     }
     
-    # lineuser = Lineuser.find(params[:lineuser_id])
+    lineuser = Lineuser.find_by(lineuser_id: params[:chat][:lineuser_id])
     p message
     p params[:chat][:lineuser_id]
     
