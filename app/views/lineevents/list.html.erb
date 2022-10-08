@@ -1,6 +1,6 @@
 <div class="list-group" style="width: 360px;">
   <% @lineusers.each do |l| %>
-    <% if l.lastmessagetime.nil? then date = l.created_at.strftime('%Y/%m/%d %H:%M') else date = l.lastmessagetime.strftime('%Y/%m/%d %H:%M') end %>
+    <% if l.lastmessagetime.nil? then date = l.created_at else date = l.lastmessagetime end %>
     <a href="<%= chat_path(l.userid) %>" class="list-group-item list-group-item-action p-0">
       <div class="d-flex justify-content-between align-content-center" style="height: 90px; padding: 12px 20px">
         <div class="d-flex flex-row justify-content-start d-flex flex-row justify-content-start align-items-center">
@@ -11,7 +11,11 @@
           </div>
         </div>
         <div class="">
-          <p class="m-0 text-secondary"><small><%= date %></small></p>
+          <% if date >= Date.today %>
+            <p class="m-0 text-secondary"><small><%= date.strftime('%Y/%m/%d %H:%M') %></small></p>
+          <% else %>
+            <p class="m-0 text-secondary"><small><%= date.strftime('%Y/%m/%d') %></small></p>
+          <% end %>
           <div class="d-flex align-items-center justify-content-center" style="height: 42px;">
             <% if l.lastmessage.nil? %>
               <span class="badge bg-danger rounded-pill">N</span>
