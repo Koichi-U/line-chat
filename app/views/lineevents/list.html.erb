@@ -13,7 +13,11 @@
         <div class="">
           <p class="m-0 text-secondary"><small><%= date %></small></p>
           <div class="d-flex align-items-center justify-content-center" style="height: 36px;">
-            <span class="badge bg-primary rounded-pill"><%= l.readcount %></span>
+            <% if l.message.nil? %>
+              <span class="badge bg-success rounded-pill">N</span>
+            <% elsif l.readcount > 0 %>
+              <span class="badge bg-primary rounded-pill"><%= l.readcount %></span>
+            <% end %>
           </div>
         </div>
       </div>
