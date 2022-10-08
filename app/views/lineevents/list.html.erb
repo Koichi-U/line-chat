@@ -4,7 +4,6 @@
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1"><%= l.displayname %></h5>
         <small><%= Chat.where(lineuser_id: l.userid).order(updated_at: :desc).limit(1).created_at %></small>
-        <%=# l.active %>
       </div>
       <p class="mb-1"><%= Chat.where(lineuser_id: l.userid).order(updated_at: :desc).limit(1).created_at %></p>
     </a>
