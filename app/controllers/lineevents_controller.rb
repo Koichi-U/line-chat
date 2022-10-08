@@ -58,12 +58,6 @@ class LineeventsController < ApplicationController
             p "Cannot save a message"
           end
           
-          response = client.reply_message(event['replyToken'], message)
-          if response.code != "200"
-            p 'if-iftext-status'
-            statusCode = response.code
-            statusMessage = response.message
-          end
           p 'else-else-else'
         end
         p 'else-else'
