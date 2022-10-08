@@ -1,11 +1,13 @@
-<% lineuser = Lineuser.find_by(userid: params[userid]) %>
+<% lineuser = Lineuser.find_by(userid: params[:userid]) %>
 <% @chats.each do |c| %>
   <div class="chat">
     <% if c.user_id.nil? %>
-      <div class="receive">
-        <%= lineuser.id %>
-        <%= c.lineuser_id %>
-        <%= c.message %>
+      <div class="receive d-flex flex-row justify-content-start">
+        <img src="<%= lineuser.pictureurl %>" class="rounded-circle w-10" width="50" height="50">
+        <%= lineuser.displayname %>
+        <div>
+          <%= c.message %>
+        </div>
       </div>
     <% else %>
     <% end %>
