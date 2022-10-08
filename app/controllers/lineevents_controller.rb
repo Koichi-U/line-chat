@@ -35,10 +35,10 @@ class LineeventsController < ApplicationController
         if event.type == "text"
           p 'if-iftext'
           
-          notifier.ping event.message['text']
-          
           lineuser = Lineuser.find_by(userid: event['source']['userId'])
           p lineuser
+          
+          notifier.post text: event.message['text'], username: lineuser.displayname, icon_url: lineuser.pictureurl
           
           chat = Chat.new(
             message: event.message['text'],
@@ -218,7 +218,7 @@ class LineeventsController < ApplicationController
     end
     
     def notifier
-      Slack::Notifier.new(WEBHOOK_URL, username: '通知Bot', icon_emoji: ':sunglasses:')
+      Slack::Notifier.new WEBHOOK_URL
     end
 
 end
