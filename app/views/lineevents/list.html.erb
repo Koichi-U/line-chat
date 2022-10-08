@@ -4,7 +4,7 @@
       <% if l.lastmessagetime.nil? then date = l.created_at.strftime('%Y/%m/%d %H:%M') else date = l.lastmessagetime.strftime('%Y/%m/%d %H:%M') end %>
       <a href="<%= chat_path(l.userid) %>" class="list-group-item list-group-item-action">
         <div class="d-flex">
-          <div class="d-flex w-90 justify-content-between">
+          <div class="w-90">
             <img src="<%= l.pictureurl %>" class="rounded-circle">
             <h5 class="mb-1"><%= l.displayname %></h5>
           </div>
@@ -19,7 +19,7 @@
       <% if l.lastmessagetime.nil? then date = l.created_at.strftime('%Y/%m/%d %H:%M') else date = l.lastmessagetime.strftime('%Y/%m/%d %H:%M') end %>
       <a href="<%= chat_path(l.userid) %>" class="list-group-item list-group-item-action">
         <div class="d-flex">
-          <div class="d-flex w-90 justify-content-between">
+          <div class="w-90">
             <img src="<%= l.pictureurl %>" class="rounded-circle">
             <h5 class="mb-1"><%= l.displayname %></h5>
             <p class="mb-1"><%= l.lastmessage %></p>
