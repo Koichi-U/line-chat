@@ -21,7 +21,7 @@
           <% else %>
             <p class="m-0 text-secondary"><small><%= date.strftime('%Y/%m/%d') %></small></p>
           <% end %>
-          <div class="d-flex align-items-center justify-content-center" style="height: 42px;">
+          <div class="d-flex align-items-center justify-content-end" style="height: 42px;">
             <% if l.lastmessage.nil? %>
               <span class="badge bg-danger rounded-pill">N</span>
             <% elsif l.readcount > 0 %>
