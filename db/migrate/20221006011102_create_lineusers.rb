@@ -11,6 +11,7 @@ class CreateLineusers < ActiveRecord::Migration[7.0]
       t.string :lastmessage
       t.datetime :lastmessagetime
       t.boolean :read, default: false, null: false
+      t.integer :readcount, default: 0
 
       t.timestamps
     end
