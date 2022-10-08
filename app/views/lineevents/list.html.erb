@@ -15,8 +15,8 @@
           <% elsif l.lastmessagetime.after? Date.yesterday %>
             <p class="m-0 text-secondary"><small>昨日</small></p>
           <% elsif l.lastmessagetime.after? Date.current-7 %>
-            <% l.lastmessagetime = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"][l.lastmessagetime.wday] %>
-            <p class="m-0 text-secondary"><small><%= l.lastmessagetime %></small></p>
+            <% date = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"][l.lastmessagetime.wday] %>
+            <p class="m-0 text-secondary"><small><%= date %></small></p>
           <% else %>
             <p class="m-0 text-secondary"><small><%= l.lastmessagetime.strftime('%Y/%m/%d') %></small></p>
           <% end %>
