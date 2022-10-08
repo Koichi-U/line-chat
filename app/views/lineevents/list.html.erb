@@ -7,12 +7,17 @@
           <img src="<%= l.pictureurl %>" class="rounded-circle w-10" width="50" height="50">
           <div class="ms-3">
             <h5 class="m-0 text-truncate" style="max-width:200px;"><%= l.displayname %></h5>
-            <p class="m-0 text-secondary text-truncate" style="max-width:200px;"><%= l.lastmessage %></p>
+            <p class="m-0 text-secondary text-truncate"><%= l.lastmessage %></p>
           </div>
         </div>
         <div class="">
-          <% if date >= Date.today %>
-            <p class="m-0 text-secondary"><small><%= date.strftime('%H:%M') %></small></p>
+          <% if date.after? Date.current-1 %>
+            <p class="m-0 text-secondary"><small><%= date.strftime('%Y/%m/%d %H:%M') %></small></p>
+          <% elsif date.after? Date.yesterday %>
+            <p class="m-0 text-secondary"><small>昨日</small></p>
+          <% elsif date.after? Date.current-7 %>
+            <% date = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"][date.wday] %>
+            <p class="m-0 text-secondary"><small><%= date %></small></p>
           <% else %>
             <p class="m-0 text-secondary"><small><%= date.strftime('%Y/%m/%d') %></small></p>
           <% end %>
