@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+:root {
+  --main-color: #112651;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
