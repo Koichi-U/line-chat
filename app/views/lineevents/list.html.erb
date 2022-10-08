@@ -4,31 +4,35 @@
       <% if l.lastmessagetime.nil? then date = l.created_at.strftime('%Y/%m/%d %H:%M') else date = l.lastmessagetime.strftime('%Y/%m/%d %H:%M') end %>
       <a href="<%= chat_path(l.userid) %>" class="list-group-item list-group-item-action">
         <div class="d-flex">
-          <div class="d-flex w-90 justify-content-between">
-            <img src="<%= l.pictureurl %>" class="rounded-circle">
+          <div class="d-flex w-10">
+            <img src="<%= l.pictureurl %>" class="rounded-circle w-10">
+          </div>
+          <div class="w-90">
             <h5 class="mb-1"><%= l.displayname %></h5>
+            <p class="mb-1"><%= l.lastmessage %></p>
           </div>
           <div class="d-flex w-10">
             <small><% date %></small>
             <p class="badge bg-primary rounded-pill"><%= l.readcount %></p>
           </div>
         </div>
-        <p class="mb-1"><%= l.lastmessage %></p>
       </a>
     <% else %>
       <% if l.lastmessagetime.nil? then date = l.created_at.strftime('%Y/%m/%d %H:%M') else date = l.lastmessagetime.strftime('%Y/%m/%d %H:%M') end %>
       <a href="<%= chat_path(l.userid) %>" class="list-group-item list-group-item-action">
         <div class="d-flex">
-          <div class="d-flex w-90 justify-content-between">
-            <!--<img src="<%= l.pictureurl %>" class="rounded-circle" width=>-->
+          <div class="d-flex w-10">
+            <img src="<%= l.pictureurl %>" class="rounded-circle w-10">
+          </div>
+          <div class="w-90">
             <h5 class="mb-1"><%= l.displayname %></h5>
+            <p class="mb-1"><%= l.lastmessage %></p>
           </div>
           <div class="d-flex w-10">
             <small><% date %></small>
             <p class="badge bg-primary rounded-pill"><%= l.readcount %></p>
           </div>
         </div>
-        <p class="mb-1"><%= l.lastmessage %></p>
       </a>
     <% end %>
   <% end %>
