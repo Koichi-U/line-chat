@@ -20,7 +20,7 @@
             <h5 class="mb-1"><%= l.displayname %></h5>
           </div>
           <div class="d-flex w-10">
-            <small><%= l.lastmessagetime.strftime('%Y/%m/%d %H:%M') %></small>
+            <small><%= if l.lastmessagetime.nil? then l.created_at.strftime('%Y/%m/%d %H:%M') else l.lastmessagetime.strftime('%Y/%m/%d %H:%M') %></small>
             <p class="badge bg-primary rounded-pill"><%= l.readcount %></p>
           </div>
         </div>
