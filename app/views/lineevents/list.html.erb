@@ -2,9 +2,9 @@
   <% @lineusers.each do |l| %>
     <% if l.lastmessagetime.nil? then date = l.created_at.strftime('%Y/%m/%d %H:%M') else date = l.lastmessagetime.strftime('%Y/%m/%d %H:%M') end %>
     <a href="<%= chat_path(l.userid) %>" class="list-group-item list-group-item-action">
-      <div class="">
+      <div class="d-flex justify-content-between">
         <img src="<%= l.pictureurl %>" class="rounded-circle w-10" width="50" height="50">
-        <div class="d-flex flex-column justify-content-between">
+        <div class="d-flex justify-content-start">
           <h5 class="mb-1"><%= l.displayname %></h5>
           <p class="mb-1"><%= l.lastmessage %></p>
         </div>
