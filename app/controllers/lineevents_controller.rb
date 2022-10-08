@@ -121,6 +121,7 @@ class LineeventsController < ApplicationController
               
               if lineuser.save
                 p "Register a line user"
+                lineuser.update(lastmessagetime: lineuser.created_at)
               else
                 p "Cannot register a line user"
               end

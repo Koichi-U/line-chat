@@ -19,7 +19,8 @@ Lineuser.create!(
    language: "ja",
    pictureurl: "https://profile.line-scdn.net/0m02d92e6a72518b95e464e154ebff91e90bd054ab0ae8",
    statusmessage: nil,
-   active: true
+   active: true,
+   lastmessagetime: DateTime.new(2022, 10, 9, 3, 11, 12, '+09:00')
 )
 
 Lineuser.create!(
@@ -28,5 +29,6 @@ Lineuser.create!(
    language: "ja",
    pictureurl: "https://sprofile.line-scdn.net/0hy2RNVCAgJh1_NzK0EFVYYg9nJXdcRn8PWgZgK08wKyVBUGYbUVhqLk5kLH4QUDYYA1ZpKxkyLC1zJFF7YWHaKXgHeCpGAWVJVlht-Q",
    statusmessage: nil,
-   active: true
+   active: true,
+   lastmessagetime: DateTime.new(2022, 10, 3, 3, 11, 12, '+09:00')
 )
