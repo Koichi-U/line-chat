@@ -1,43 +1,24 @@
 <div class="list-group">
   <% @lineusers.each do |l| %>
-    <% if l.read %>
-      <% if l.lastmessagetime.nil? then date = l.created_at.strftime('%Y/%m/%d %H:%M') else date = l.lastmessagetime.strftime('%Y/%m/%d %H:%M') end %>
-      <a href="<%= chat_path(l.userid) %>" class="list-group-item list-group-item-action">
-        <div class="d-flex">
-          <div class="d-flex w-10">
-            <img src="<%= l.pictureurl %>" class="rounded-circle w-10">
+    <% if l.lastmessagetime.nil? then date = l.created_at.strftime('%Y/%m/%d %H:%M') else date = l.lastmessagetime.strftime('%Y/%m/%d %H:%M') end %>
+    <a href="<%= chat_path(l.userid) %>" class="list-group-item list-group-item-action">
+      <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-start">
+          <div class="">
+            <img src="<%= l.pictureurl %>" class="rounded-circle w-10" width="50" height="50">
           </div>
-          <div class="d-flex w-90">
+          <div class="">
             <h5 class="mb-1"><%= l.displayname %></h5>
             <p class="mb-1"><%= l.lastmessage %></p>
           </div>
-          <div class="d-flex w-10">
-            <small><% date %></small>
-            <p class="badge bg-primary rounded-pill"><%= l.readcount %></p>
-          </div>
         </div>
-      </a>
-    <% else %>
-      <% if l.lastmessagetime.nil? then date = l.created_at.strftime('%Y/%m/%d %H:%M') else date = l.lastmessagetime.strftime('%Y/%m/%d %H:%M') end %>
-      <a href="<%= chat_path(l.userid) %>" class="list-group-item list-group-item-action">
-        <div class="d-flex justify-content-between">
-          <div class="d-flex justify-content-start">
-            <div class="">
-              <img src="<%= l.pictureurl %>" class="rounded-circle w-10" width="50" height="50">
-            </div>
-            <div class="">
-              <h5 class="mb-1"><%= l.displayname %></h5>
-              <p class="mb-1"><%= l.lastmessage %></p>
-            </div>
-          </div>
+        <div class="d-flex flex-column justify-content-between">
+          <a><small><%= date %></small></a>
           <div class="d-flex flex-column justify-content-between">
-            <a><small><%= date %></small></a>
-            <div class="d-flex flex-column justify-content-between">
-              <a class="badge bg-primary rounded-pill"><%= l.readcount %></a>
-            </div>
+            <a class="badge bg-primary rounded-pill"><%= l.readcount %></a>
           </div>
         </div>
-      </a>
-    <% end %>
+      </div>
+    </a>
   <% end %>
 </div>
