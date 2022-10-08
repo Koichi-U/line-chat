@@ -191,7 +191,7 @@ class LineeventsController < ApplicationController
       redirect_back(fallback_location: root_path)
     else
       chat = Chat.new(chat_params)
-      chat.lineuser_id = params[:chat][:lineuser_id]
+      chat.lineuser_id = lineuser.id
       chat.user_id = current_user.id
       p chat
       if chat.save
