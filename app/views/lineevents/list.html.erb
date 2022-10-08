@@ -2,7 +2,7 @@
   <% @lineusers.each do |l| %>
   <%= l.read %>
     <% if l.read %>
-      <a href="<%= chat_path(l.userid) %>" class="list-group-item list-group-item-action active" aria-current="true">
+      <a href="<%= chat_path(l.userid) %>" class="list-group-item list-group-item-action active">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1"><%= l.displayname %></h5>
           <small><%= l.lastmessagetime.strftime('%Y/%m/%d %H:%M') %></small>
@@ -10,7 +10,7 @@
         <p class="mb-1"><%= l.lastmessage %></p>
       </a>
     <% else %>
-      <a href="<%= chat_path(l.userid) %>" class="list-group-item list-group-item-action active">
+      <a href="<%= chat_path(l.userid) %>" class="list-group-item list-group-item-action">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1"><%= l.displayname %></h5>
           <small><%= l.lastmessagetime %></small>
