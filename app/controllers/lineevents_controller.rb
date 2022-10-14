@@ -61,6 +61,7 @@ class LineeventsController < ApplicationController
         end
         p 'else-else'
       elsif event.is_a?(Line::Bot::Event::Follow) or event.is_a?(Line::Bot::Event::Unfollow)
+        eventFlag = ""
         #フォローまたはブロックの場合
         if event['type'] == "follow" or event['type'] == "unfollow"
           p 'if-elsiffollowunfollow'
@@ -127,22 +128,30 @@ class LineeventsController < ApplicationController
             p 'if-else'
             #Lineusersのデータ取得
             lineuser = Lineuser.find_by(userid: userId)
+            follow = Follow.new(lineuser_id: userId)
             
             #フォロー、ブロックの条件分岐
             if event['type'] == "follow"
               p 'if-else-follow'
               lineuser.update(active: true)
-              follow.update(active: 1)
+              follow.active = 1
+              eventFlag = "follow"
             elsif event['type'] == "unfollow"
               p 'if-else-unfollow'
               lineuser.update(active: false)
-              follow.update(active: 0)
+              follow.active = 0
+              eventFlag = "unfollow"
+            end
+            
+            if follow.save
+              p "good follow/unfollow"
             end
             p 'else-else-else-else'
           end
           p 'else-else-else'
         end
         p 'else-else'
+        notifier.post text: eventFlag, username: lineuser.displayname, icon_url: lineuser.pictureurl, channel: "#line-chat-bot"
       end
       p 'else'
     end
