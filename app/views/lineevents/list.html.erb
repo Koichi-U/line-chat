@@ -55,7 +55,7 @@
     })
     .done(function(data){
       console.log(data)
-      $('.chat-messages').html("<%= j(render 'messages', locals: { messages: @messages, lineuser_id: @lineuser_id}) %>")
+      $('.chat-messages').html("<%= j(render partial: 'messages', locals: { messages: @messages, lineuser_id: @lineuser_id}) %>")
     })
     .fail(function(){
       console.log('aaa')
