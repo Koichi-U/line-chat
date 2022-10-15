@@ -1,27 +1,29 @@
-<% lineuser = Lineuser.find(lineuser_id) %>
-<% day = DateTime.new(0, 1, 1, 0, 0) %>
-<% messages.each do |c| %>
-  <div class="chat">
-    <% if day.strftime('%Y/%m/%d') != c.created_at.strftime('%Y/%m/%d') %>
-      <% day = c.created_at %>
-      <p><%= c.created_at.strftime('%Y/%m/%d') %></p>
-    <% end %>
-    <% if c.user_id.nil? %>
-      <div class="receive d-flex flex-row align-items-center justify-content-start" style="height: 40px">
-        <img src="<%= lineuser.pictureurl %>" class="rounded-circle w-10" width="36" height="36">
-        <p class="m-0"><%= c.message %></p>
-        <div class="post-time small">
-          <p class="m-0"><%= c.created_at.strftime('%Y/%m/%d') %></p>
-          <p class="m-0"><%= c.created_at.strftime('%H:%M') %></p>
+<% if not ( messages.nil? && lineuser_id.nil? ) %>
+  <% lineuser = Lineuser.find(lineuser_id) %>
+  <% day = DateTime.new(0, 1, 1, 0, 0) %>
+  <% messages.each do |c| %>
+    <div class="chat">
+      <% if day.strftime('%Y/%m/%d') != c.created_at.strftime('%Y/%m/%d') %>
+        <% day = c.created_at %>
+        <p><%= c.created_at.strftime('%Y/%m/%d') %></p>
+      <% end %>
+      <% if c.user_id.nil? %>
+        <div class="receive d-flex flex-row align-items-center justify-content-start" style="height: 40px">
+          <img src="<%= lineuser.pictureurl %>" class="rounded-circle w-10" width="36" height="36">
+          <p class="m-0"><%= c.message %></p>
+          <div class="post-time small">
+            <p class="m-0"><%= c.created_at.strftime('%Y/%m/%d') %></p>
+            <p class="m-0"><%= c.created_at.strftime('%H:%M') %></p>
+          </div>
         </div>
-      </div>
-    <% else %>
-    <% end %>
-  </div>
-<% end %>
-
-<%= form_for(messages, url: {controller: 'lineevents', action: 'messagecreate' }) do |f| %>
-  <%= f.text_field :message %>
-  <%= f.hidden_field :lineuser_id, value: lineuser_id %>
-  <%= f.submit %>
+      <% else %>
+      <% end %>
+    </div>
+  <% end %>
+  
+  <%= form_for(messages, url: {controller: 'lineevents', action: 'messagecreate' }) do |f| %>
+    <%= f.text_field :message %>
+    <%= f.hidden_field :lineuser_id, value: lineuser_id %>
+    <%= f.submit %>
+  <% end %>
 <% end %>
