@@ -5,7 +5,7 @@ class Messages::PersonsController < ApplicationController
     
     respond_to do |format|
       format.html { redirect_to :root }
-      format.json { render json: @messages, @lineuser_id }
+      format.json { render json: {messages: @messages, lineuser_id: @lineuser_id } }
     end
   end
 end
