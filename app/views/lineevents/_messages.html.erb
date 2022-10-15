@@ -1,4 +1,5 @@
 <% if !messages.nil? && !lineuser_id.nil? %>
+  <p>aaa</p>
   <% lineuser = Lineuser.find(lineuser_id) %>
   <% day = DateTime.new(0, 1, 1, 0, 0) %>
   <% messages.each do |c| %>
@@ -26,4 +27,6 @@
     <%= f.hidden_field :lineuser_id, value: lineuser_id %>
     <%= f.submit %>
   <% end %>
+<% else %>
+  <p>nnn</p>
 <% end %>
