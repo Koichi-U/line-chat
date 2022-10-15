@@ -1,6 +1,6 @@
 <div class="list-group" style="width: 360px; max-width: 360px">
   <% @lineusers.each do |l| %>
-    <a href="<%= chat_path(l.userid) %>" class="list-group-item list-group-item-action p-0">
+    <a class="list-group-item list-group-item-action p-0">
       <div class="d-flex justify-content-between align-content-center" style="height: 90px; padding: 12px 20px">
         <div class="d-flex flex-row justify-content-start d-flex flex-row justify-content-start align-items-center">
           <img src="<%= l.pictureurl %>" class="rounded-circle w-10" width="50" height="50">
@@ -29,9 +29,33 @@
           </div>
         </div>
       </div>
+      <input type="hidden" class="id" value="<%= l.id %>">
     </a>
   <% end %>
 </div>
 <div>
   <div class="chat-header"></div>
 </div>
+
+<script>
+  $('.list-group-item').on('click', function() {
+    $('.list-group-item').removeClass('active')
+    $(this).addClass('active')
+    
+    lineuser_id = $(this).children('.id').val()
+    console.log(lineuser_id)
+    
+    $.ajax({
+      type: 'GET', // リクエストのタイプ
+      url: '/messages/persons', // リクエストを送信するURL
+      data:  { lineuser_id: lineuser_id }, //日本語などを考慮してエンコード済み
+      dataType: 'json' // サーバーから返却される型
+    })
+    .done(function(data){
+      console.log(data)
+    })
+    .fail(function(){
+      console.log('aaa')
+    });
+  })
+</script>
