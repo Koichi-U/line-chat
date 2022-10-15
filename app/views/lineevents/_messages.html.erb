@@ -1,4 +1,4 @@
-<% if not ( messages.nil? && lineuser_id.nil? ) %>
+<% if !messages.nil? && !lineuser_id.nil? %>
   <% lineuser = Lineuser.find(lineuser_id) %>
   <% day = DateTime.new(0, 1, 1, 0, 0) %>
   <% messages.each do |c| %>
