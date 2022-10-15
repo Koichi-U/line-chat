@@ -37,6 +37,7 @@
   <div class="chat-header"></div>
   <div class="chat-messages">
     <% if not @messages.nil?%>
+      <p>aa</p>
       <%= render 'messages', locals: { messages: @messages, lineuser_id: @messages.first.lineuser_id } %>
     <% end %>
   </div>
