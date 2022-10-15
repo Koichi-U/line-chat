@@ -36,7 +36,7 @@
 <div>
   <div class="chat-header"></div>
   <div class="chat-messages">
-    <!--<% if not @messages.nil?%>-->
+    <!--<% if not @messages.nil? %>-->
     <!--  <p>aa</p>-->
     <!--  <%= render 'messages', locals: { messages: @messages, lineuser_id: @messages.first.lineuser_id } %>-->
     <!--<% end %>-->
@@ -59,7 +59,7 @@
     })
     .done(function(data){
       console.log(data)
-      $('.chat-messages').html("<%= j(render 'messages', locals: { messages: @messages, lineuser_id: @messages.first.lineuser_id }) %>")
+      $('.chat-messages').html("<%= j(render 'messages', locals: { messages: @messages, lineuser_id: ${ lineuser_id }) %>")
     })
     .fail(function(){
       console.log('aaa')
