@@ -59,7 +59,7 @@
     })
     .done(function(data){
       console.log(data)
-      $('.chat-messages').html(data);
+      $('.chat-messages').html("<%= j(render 'messages', locals: { messages: @messages, lineuser_id: @messages.first.lineuser_id }) %>")
     })
     .fail(function(){
       console.log('aaa')
