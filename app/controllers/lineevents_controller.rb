@@ -164,6 +164,7 @@ class LineeventsController < ApplicationController
   def list
     @lineusers = Lineuser.all.order(lastmessagetime: "DESC")
     @messages = nil
+    @lineuser_id = nil
   end
   
   def chat
