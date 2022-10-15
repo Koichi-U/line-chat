@@ -1,4 +1,4 @@
-<% lineuser = Lineuser.find(params[:lineuser_id]) %>
+<% lineuser = Lineuser.find(lineuser_id) %>
 <% day = DateTime.new(0, 1, 1, 0, 0) %>
 <% messages.each do |c| %>
   <div class="chat">
@@ -22,6 +22,6 @@
 
 <%= form_for(messages, url: {controller: 'lineevents', action: 'messagecreate' }) do |f| %>
   <%= f.text_field :message %>
-  <%= f.hidden_field :lineuser_id, value: params[:lineuser_id] %>
+  <%= f.hidden_field :lineuser_id, value: lineuser_id %>
   <%= f.submit %>
 <% end %>
