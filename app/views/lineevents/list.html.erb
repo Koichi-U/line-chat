@@ -50,8 +50,8 @@
     $.ajax({
       type: 'GET', // リクエストのタイプ
       url: '/messages/persons', // リクエストを送信するURL
-      data:  { lineuser_id: lineuser_id }, //日本語などを考慮してエンコード済み
-      dataType: 'json' // サーバーから返却される型
+      data:  { lineuser_id: lineuser_id } //日本語などを考慮してエンコード済み
+      // dataType: 'json' // サーバーから返却される型
     })
     .done(function(data){
       console.log(data)
