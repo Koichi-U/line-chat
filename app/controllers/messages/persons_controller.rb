@@ -7,6 +7,6 @@ class Messages::PersonsController < ApplicationController
     #   format.html { redirect_to :root }
     #   format.json { render json: {messages: @messages, lineuser_id: @lineuser_id } }
     # end
-    render partial: 'messages', locals: { messages: @messages, lineuser_id: @lineuser_id}
+    render partial: 'lineevents/messages', locals: { messages: @messages, lineuser_id: @lineuser_id}
   end
 end
