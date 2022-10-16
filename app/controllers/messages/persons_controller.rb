@@ -3,9 +3,10 @@ class Messages::PersonsController < ApplicationController
     @lineuser_id = params[:lineuser_id]
     @messages = Chat.where(lineuser_id: params[:lineuser_id])
     
-    respond_to do |format|
-      format.html { redirect_to :root }
-      format.json { render json: {messages: @messages, lineuser_id: @lineuser_id } }
-    end
+    # respond_to do |format|
+    #   format.html { redirect_to :root }
+    #   format.json { render json: {messages: @messages, lineuser_id: @lineuser_id } }
+    # end
+    render partial: 'messages', locals: { messages: @messages, lineuser_id: @lineuser_id}
   end
 end

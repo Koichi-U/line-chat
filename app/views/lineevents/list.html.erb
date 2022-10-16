@@ -55,9 +55,7 @@
     })
     .done(function(data){
       console.log(data)
-      messages = data[messages]
-      lineuser_id = data[lineuser_id]
-      $('.chat-messages').html("<%= j(render partial: 'messages', locals: { messages: " + messages + ", lineuser_id: " + lineuser_id + "}) %>")
+      $('.chat-messages').html(data)
     })
     .fail(function(){
       console.log('aaa')
