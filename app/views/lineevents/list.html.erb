@@ -58,12 +58,5 @@
       data:  { lineuser_id: lineuser_id } //日本語などを考慮してエンコード済み
       // dataType: 'json' // サーバーから返却される型
     })
-    .done(function(){
-      // console.log(data)
-      $('.chat-messages').html("<%= j(render partial: 'lineevents/messages', locals: {messages: @messages, lineuser_id: @lineuser_id }) %>")
-    })
-    .fail(function(){
-      console.log('aaa')
-    });
   })
 </script>
