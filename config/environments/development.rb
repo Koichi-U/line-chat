@@ -68,5 +68,8 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
   
+  # Cloud9
+  config.web_console.whitelisted_ips = '58.4.45.114'
+  
   config.hosts.clear
 end

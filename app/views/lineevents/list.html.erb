@@ -1,3 +1,8 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  
+</nav>
+
 <div class="list-group" style="width: 360px; max-width: 360px">
   <% @lineusers.each do |l| %>
     <a class="list-group-item list-group-item-action p-0">
@@ -53,9 +58,9 @@
       data:  { lineuser_id: lineuser_id } //日本語などを考慮してエンコード済み
       // dataType: 'json' // サーバーから返却される型
     })
-    .done(function(data){
-      console.log(data)
-      $('.chat-messages').html(data)
+    .done(function(){
+      // console.log(data)
+      $('.chat-messages').html("<%= j(render partial: 'lineevents/messages', locals: {messages: @messages, lineuser_id: @lineuser_id }) %>")
     })
     .fail(function(){
       console.log('aaa')
