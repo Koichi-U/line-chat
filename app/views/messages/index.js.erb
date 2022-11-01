@@ -1,1 +1,1 @@
-$('.chat-messages').append("<%= j(render partial: 'lineevents/messages', locals: {messages: @messages, lineuser_id: @lineuser_id }) %>")
+$('.chat-messages').html("<%= j(render partial: 'lineevents/messages', locals: {messages: @messages, lineuser_id: @lineuser_id }) %>")

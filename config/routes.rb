@@ -5,10 +5,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "users#admin"
-  
-  namespace :messages do 
-    resources :persons, only: :index, defaults: { format: :json }
-  end
 
   
   get '/admin' => 'users#admin'
@@ -16,4 +12,5 @@ Rails.application.routes.draw do
   get '/line/users' => 'lineevents#list'
   get '/line/chat/:userid' => 'lineevents#chat', as: 'chat'
   post '/line/post' => 'lineevents#messagecreate'
+  get '/messages/persons' => 'messages#index'
 end
