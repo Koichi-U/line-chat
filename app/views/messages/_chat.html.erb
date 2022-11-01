@@ -1,7 +1,26 @@
-<% if !messages.nil? && !lineuser.nil? %>
-  <% @day = DateTime.new(0, 1, 1, 0, 0) %>
-  <%= @day %>
-  <%= render partial: 'message', collection: messages, as: "message", locals: { lineuser: lineuser, day: @day } %>
-  
-<% else %>
-<% end %>
+<div class="chat-header">
+  <% if !lineuser.nil? %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand"><%= lineuser.displayname %></a>
+      
+    </nav>
+  <% end %>
+</div>
+<div class="chat-messages">
+  <% if !messages.nil? %>
+    <% @day = DateTime.new(0, 1, 1, 0, 0) %>
+    <%= render partial: 'message', collection: messages, as: "message", locals: { lineuser: lineuser, day: @day } %>
+    
+  <% else %>
+  <% end %>
+</div>
+<div class="chat-form">
+  <% if !lineuser.nil? %>
+    <% form = Chat.new %>
+    <%= form_for(form, url: {controller: 'lineevents', action: 'messagecreate' }) do |f| %>
+      <%= f.text_field :message %>
+      <%= f.hidden_field :lineuser_id, value: lineuser.id %>
+      <%= f.submit %>
+    <% end %>
+  <% end %>
+</div>

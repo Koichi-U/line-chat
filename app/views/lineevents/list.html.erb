@@ -2,45 +2,44 @@
   <a class="navbar-brand" href="#">Navbar</a>
   
 </nav>
-
-<div class="list-group" style="width: 360px; max-width: 360px">
-  <% @lineusers.each do |l| %>
-    <a class="list-group-item list-group-item-action p-0">
-      <div class="d-flex justify-content-between align-content-center" style="height: 90px; padding: 12px 20px">
-        <div class="d-flex flex-row justify-content-start d-flex flex-row justify-content-start align-items-center">
-          <img src="<%= l.pictureurl %>" class="rounded-circle w-10" width="50" height="50">
-          <div class="ms-3">
-            <h6 class="m-0 text-truncate" style="max-width:170px;"><%= l.displayname %></h6>
-            <p class="m-0 text-secondary text-truncate" style="max-width:170px;"><%= l.lastmessage %></p>
+<div class="body-container">
+  <div class="customer-list list-group" style="width: 360px;">
+    <% @lineusers.each do |l| %>
+      <a class="list-group-item list-group-item-action p-0">
+        <div class="d-flex justify-content-between align-content-center" style="height: 90px; padding: 12px 20px">
+          <div class="d-flex flex-row justify-content-start d-flex flex-row justify-content-start align-items-center">
+            <img src="<%= l.pictureurl %>" class="rounded-circle w-10" width="50" height="50">
+            <div class="ms-3">
+              <h6 class="m-0 text-truncate" style="max-width:170px;"><%= l.displayname %></h6>
+              <p class="m-0 text-secondary text-truncate" style="max-width:170px;"><%= l.lastmessage %></p>
+            </div>
           </div>
-        </div>
-        <div class="">
-          <% if l.lastmessagetime.after? Date.current-1 %>
-            <p class="m-0 text-secondary"><small><%= l.lastmessagetime.strftime('%H:%M') %></small></p>
-          <% elsif l.lastmessagetime.after? Date.yesterday %>
-            <p class="m-0 text-secondary"><small>昨日</small></p>
-          <% elsif l.lastmessagetime.after? Date.current-7 %>
-            <% date = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"][l.lastmessagetime.wday] %>
-            <p class="m-0 text-secondary"><small><%= date %></small></p>
-          <% else %>
-            <p class="m-0 text-secondary"><small><%= l.lastmessagetime.strftime('%Y/%m/%d') %></small></p>
-          <% end %>
-          <div class="d-flex align-items-center justify-content-end" style="height: 42px;">
-            <% if l.lastmessage.nil? %>
-              <span class="badge bg-danger rounded-pill">N</span>
-            <% elsif l.readcount > 0 %>
-              <span class="badge bg-primary rounded-pill"><%= l.readcount %></span>
+          <div class="">
+            <% if l.lastmessagetime.after? Date.current-1 %>
+              <p class="m-0 text-secondary"><small><%= l.lastmessagetime.strftime('%H:%M') %></small></p>
+            <% elsif l.lastmessagetime.after? Date.yesterday %>
+              <p class="m-0 text-secondary"><small>昨日</small></p>
+            <% elsif l.lastmessagetime.after? Date.current-7 %>
+              <% date = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"][l.lastmessagetime.wday] %>
+              <p class="m-0 text-secondary"><small><%= date %></small></p>
+            <% else %>
+              <p class="m-0 text-secondary"><small><%= l.lastmessagetime.strftime('%Y/%m/%d') %></small></p>
             <% end %>
+            <div class="d-flex align-items-center justify-content-end" style="height: 42px;">
+              <% if l.lastmessage.nil? %>
+                <span class="badge bg-danger rounded-pill">N</span>
+              <% elsif l.readcount > 0 %>
+                <span class="badge bg-primary rounded-pill"><%= l.readcount %></span>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
-      <input type="hidden" class="id" value="<%= l.id %>">
-    </a>
-  <% end %>
-</div>
-<div>
-  <div class="chat-header"></div>
-  <div class="chat-messages">
+        <input type="hidden" class="id" value="<%= l.id %>">
+      </a>
+    <% end %>
+  </div>
+  
+  <div class="chat" style="width: calc(100% - 360px);">
   </div>
 </div>
 
