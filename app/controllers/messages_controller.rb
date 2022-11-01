@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   def index
-    @lineuser_id = 1
+    @lineuser = Lineuser.find(params[:lineuser_id])
     @messages = Chat.where(lineuser_id: params[:lineuser_id])
     
     respond_to do |format|

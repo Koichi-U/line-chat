@@ -32,3 +32,46 @@ Lineuser.create!(
    active: true,
    lastmessagetime: DateTime.new(2022, 10, 3, 3, 11, 12, '+09:00')
 )
+
+Chat.create!(
+   id: 1,                                                        
+  message: "abcdefghijklmnopqrstuvwxyz1abcdefghijklmnopqrstuvwxyz2abcdefghijklmnopqrstuvwxyz3Aabcdefghijklmnopqrstuvwxyz1abcdefghijklmnopqrstuvwxyz2abcdefghijklmnopqrstuvwxyz3Babcdefghijklmnopqrstuvwxyz1abcdefghijklmnopqrstuvwxyz2abcdefghijklmnopqrstuvwxyz3C",
+  user_id: nil,
+  lineuser_id: 1
+)
+
+Chat.create!(
+   id: 2,
+   message: "AAA",
+   user_id: nil,
+   lineuser_id: 1
+)
+
+Chat.create!(
+   id: 3,
+   message: "Hello",
+   user_id: nil,
+   lineuser_id: 1
+)
+
+Chat.create!(
+   id: 4,
+   message: "Hello World",
+   user_id: nil,
+   lineuser_id: 1
+)
+
+Chat.create!(
+   id: 5,
+   message: "hi!\n",
+   user_id: nil,
+   lineuser_id: 1
+)
+
+Chat.create!(
+   id: 6,
+   message: "http://www3.muroran-it.ac.jp/hydrogen/lec/2017doc03.pdf\n",
+   user_id: nil,
+   lineuser_id: 1
+)
+

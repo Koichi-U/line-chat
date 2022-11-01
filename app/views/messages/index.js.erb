@@ -1,1 +1,1 @@
-$('.chat-messages').html("<%= j(render partial: 'chat', locals: { messages: @messages, lineuser_id: @lineuser_id } ) %>")
+$('.chat-messages').html("<%= j(render partial: 'chat', locals: { messages: @messages, lineuser: @lineuser } ) %>")
