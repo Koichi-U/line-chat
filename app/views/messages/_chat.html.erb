@@ -6,7 +6,7 @@
   <p>aaa</p>
   <% lineuser = Lineuser.find(lineuser_id) %>
   <% day = DateTime.new(0, 1, 1, 0, 0) %>
-  <%= render partial: 'message', collection: messages, as: "message", locals: { lineuser_id: lineuser_id, day: day } %>
+  <%= render partial: 'message', collection: messages, as: "message", locals: { lineuser: lineuser, day: day } %>
   
 <% else %>
   <p>nnn</p>
