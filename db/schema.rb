@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_06_162640) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_01_185923) do
   create_table "chats", force: :cascade do |t|
     t.string "message"
     t.integer "user_id"
@@ -55,7 +55,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_162640) do
     t.boolean "admin", default: false, null: false
     t.boolean "active", default: false, null: false
     t.string "slackid"
+    t.string "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer "invitation_limit"
+    t.string "invited_by_type"
+    t.integer "invited_by_id"
+    t.integer "invitations_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
+    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
+    t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

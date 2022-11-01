@@ -87,3 +87,7 @@ gem 'net-smtp'
 gem 'dotenv-rails'
 
 gem 'slack-notifier'
+
+# invite a user
+gem 'devise_invitable'
+
